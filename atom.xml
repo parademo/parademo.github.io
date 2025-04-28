@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Para小站</title>
+  
+  <subtitle>Just For Fun</subtitle>
+  <link href="http://parademo.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://parademo.github.io/"/>
+  <updated>2025-04-28T09:53:04.832Z</updated>
+  <id>http://parademo.github.io/</id>
+  
+  <author>
+    <name>Para</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>poker1</title>
+    <link href="http://parademo.github.io/2025/04/28/poker/"/>
+    <id>http://parademo.github.io/2025/04/28/poker/</id>
+    <published>2025-04-28T09:51:19.746Z</published>
+    <updated>2025-04-28T09:53:04.832Z</updated>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;问题：一副 $52$ 张的扑克牌，两个人提前制定一套策略，使得随机从其中拿出 $5$ 张牌，一人选择 $4$ 张并设计展示顺序，要确保另一人猜出未展示的那一张牌。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="magic" scheme="http://parademo.github.io/categories/magic/"/>
+    
+    
+    <category term="信息论" scheme="http://parademo.github.io/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/"/>
+    
+  </entry>
+  
+</feed>
