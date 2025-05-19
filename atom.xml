@@ -6,7 +6,7 @@
   <link href="http://parademo.github.io/atom.xml" rel="self"/>
   
   <link href="http://parademo.github.io/"/>
-  <updated>2025-04-28T09:53:04.832Z</updated>
+  <updated>2025-05-19T15:51:18.344Z</updated>
   <id>http://parademo.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>百万级别 $n$ 皇后</title>
+    <link href="http://parademo.github.io/2025/05/19/%E7%99%BE%E4%B8%87%E7%BA%A7%E5%88%ABn%E7%9A%87%E5%90%8E/"/>
+    <id>http://parademo.github.io/2025/05/19/%E7%99%BE%E4%B8%87%E7%BA%A7%E5%88%ABn%E7%9A%87%E5%90%8E/</id>
+    <published>2025-05-19T14:06:32.187Z</published>
+    <updated>2025-05-19T15:51:18.344Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;求 $n$ 皇后的一组解，$n &#92;le 4 &#92;times 10^6$。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="code" scheme="http://parademo.github.io/categories/code/"/>
+    
+    
+    <category term="search" scheme="http://parademo.github.io/tags/search/"/>
+    
+    <category term="random" scheme="http://parademo.github.io/tags/random/"/>
+    
+  </entry>
   
   <entry>
     <title>poker1</title>

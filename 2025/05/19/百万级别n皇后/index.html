@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.css" integrity="sha256-zM8WXtG4eUn7dKKNMTuoWZub++VnSfaOpA/8PJfvTBo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"parademo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="求 $n$ 皇后的一组解，$n \le 4 \times 10^6$。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="百万级别 $n$ 皇后">
+<meta property="og:url" content="http://parademo.github.io/2025/05/19/%E7%99%BE%E4%B8%87%E7%BA%A7%E5%88%ABn%E7%9A%87%E5%90%8E/index.html">
+<meta property="og:site_name" content="Para小站">
+<meta property="og:description" content="求 $n$ 皇后的一组解，$n \le 4 \times 10^6$。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-19T14:06:32.187Z">
+<meta property="article:modified_time" content="2025-05-19T15:51:18.344Z">
+<meta property="article:author" content="Para">
+<meta property="article:tag" content="search">
+<meta property="article:tag" content="random">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://parademo.github.io/2025/05/19/%E7%99%BE%E4%B8%87%E7%BA%A7%E5%88%ABn%E7%9A%87%E5%90%8E/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://parademo.github.io/2025/05/19/%E7%99%BE%E4%B8%87%E7%BA%A7%E5%88%ABn%E7%9A%87%E5%90%8E/","path":"2025/05/19/百万级别n皇后/","title":"百万级别 $n$ 皇后"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>百万级别 $n$ 皇后 | Para小站</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.umd.js" integrity="sha256-hiUEBwFEpLF6DlB8sGXlKo4kPZ46Ui4qGpd0vrVkOm4=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"cF0Nt1Dkq5ofT9DD69HEQX38-gzGzoHsz","app_key":"GiPoijq5jJts6MOVMHQcyuYK","server_url":null,"security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js" defer></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Para小站" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Para小站</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Just For Fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">核心算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82-%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">实现细节 &amp; 优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%B4%E7%B4%A0%E7%89%88%E6%9C%AC"><span class="nav-number">2.1.</span> <span class="nav-text">朴素版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E6%83%85%E5%86%B5%E7%94%9F%E6%88%90"><span class="nav-number">2.2.</span> <span class="nav-text">初始情况生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%83%E9%87%8D%E5%87%BD%E6%95%B0"><span class="nav-number">2.3.</span> <span class="nav-text">权重函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E9%80%89%E6%8B%A9"><span class="nav-number">2.4.</span> <span class="nav-text">参数选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E4%BB%A3%E7%A0%81"><span class="nav-number">2.5.</span> <span class="nav-text">参考代码</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Para"
+      src="/uploads/Riko.png">
+  <p class="site-author-name" itemprop="name">Para</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/parademo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;parademo" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://qm.qq.com/q/toAv8f5huK" title="E-Mail → https:&#x2F;&#x2F;qm.qq.com&#x2F;q&#x2F;toAv8f5huK" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://parademo.github.io/2025/05/19/%E7%99%BE%E4%B8%87%E7%BA%A7%E5%88%ABn%E7%9A%87%E5%90%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/Riko.png">
+      <meta itemprop="name" content="Para">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Para小站">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="百万级别 $n$ 皇后 | Para小站">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          百万级别 $n$ 皇后
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-05-19 22:06:32 / 修改时间：23:51:18" itemprop="dateCreated datePublished" datetime="2025-05-19T22:06:32+08:00">2025-05-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2025/05/19/%E7%99%BE%E4%B8%87%E7%BA%A7%E5%88%ABn%E7%9A%87%E5%90%8E/" class="post-meta-item leancloud_visitors" data-flag-title="百万级别 $n$ 皇后" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>求 $n$ 皇后的一组解，$n \le 4 \times 10^6$。</p>
+<span id="more"></span>
+
+<h2 id="核心算法"><a href="#核心算法" class="headerlink" title="核心算法"></a>核心算法</h2><p>采用 Swap 策略。每次取出一个产生冲突的皇后，随机一个皇后，类似爬山算法，如果交换后权重函数变小则交换。</p>
+<h2 id="实现细节-优化"><a href="#实现细节-优化" class="headerlink" title="实现细节 &amp; 优化"></a>实现细节 &amp; 优化</h2><h3 id="朴素版本"><a href="#朴素版本" class="headerlink" title="朴素版本"></a>朴素版本</h3><p>我们随机生成一个排列，行坐标为下标，列坐标为值。此时皇后冲突只用考虑对角线。<br>在不考虑任何优化的情况下，可以完成 $10^4$ 级别数据。</p>
+<h3 id="初始情况生成"><a href="#初始情况生成" class="headerlink" title="初始情况生成"></a>初始情况生成</h3><p>在纯随机的情况下，初始权重函数值较大，而我们每一次交换只能减少常数的权重函数。</p>
+<p>因此，降低初始权重函数值，就可以降低需要的有效交换次数。</p>
+<p>具体如何生成？依次遍历行，用随机的方法找到一列不会产生冲突。生成若干个无冲突位置后，剩下的位置任意随机摆放。</p>
+<p>优化后大致可处理 $2 \times 10^5$ 级别数据。</p>
+<h3 id="权重函数"><a href="#权重函数" class="headerlink" title="权重函数"></a>权重函数</h3><p>状态的复制是 $O(n)$ 级别的，这大大限制了有效交换次数。这里我们希望状态的复制变为 $O(1)$，其中最关键的是求解交换后的权重函数，以及冲突相关内容的更新。以下是需要维护的信息：</p>
+<ul>
+<li>每条对角线上皇后个数 $s_1, s_2$</li>
+<li>权重函数：$S &#x3D; \sum_i \binom{s_1(i)}{2} + \binom{s_2(i)}{2}$</li>
+<li>冲突集合中皇后的下标集合 $conflicts$</li>
+</ul>
+<p>由于每一次交换只会影响常数个 $s_1,s_2$，因此前两条可以在 $O(1)$ 时间内更新。对于第三条，考虑到冲突皇后的数量较小，我们用 conflicts 维护可能在冲突范围中的皇后，不是就继续随机就行了，当混入大量不冲突的皇后就重构。</p>
+<h3 id="参数选择"><a href="#参数选择" class="headerlink" title="参数选择"></a>参数选择</h3><p>以 $n &#x3D; 4000000$ 为例：</p>
+<blockquote>
+<p>初始冲突皇后数 100<br>失败 5 次后重构 conflicts<br>max_iter &#x3D; 10</p>
+</blockquote>
+<h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll int</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(ll x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x &lt; <span class="number">0</span>) x = -x, <span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>);</span><br><span class="line">	<span class="keyword">if</span>(x &gt;= <span class="number">10</span>) <span class="built_in">write</span>(x / <span class="number">10</span>);</span><br><span class="line">	<span class="built_in">putchar</span>(x % <span class="number">10</span> + <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> ll n = <span class="number">4000000</span>;</span><br><span class="line">ll s1[<span class="number">2</span>*n], s2[<span class="number">2</span>*n];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">State</span> &#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; p;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; conflict_rows; </span><br><span class="line">    <span class="built_in">State</span>() &#123;</span><br><span class="line">        p.<span class="built_in">resize</span>(n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) p[i] = i;</span><br><span class="line">        conflict_rows.<span class="built_in">clear</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Rand</span><span class="params">(ll m = n - <span class="number">100</span>)</span> </span>&#123;</span><br><span class="line">        conflict_rows.<span class="built_in">clear</span>();</span><br><span class="line">        <span class="function">default_random_engine <span class="title">e</span><span class="params">(rand())</span></span>;</span><br><span class="line">        <span class="function">uniform_int_distribution&lt;<span class="type">int</span>&gt; <span class="title">dis</span><span class="params">(<span class="number">0</span>, n - <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="function">uniform_int_distribution&lt;<span class="type">int</span>&gt; <span class="title">dis</span><span class="params">(i, n - <span class="number">1</span>)</span></span>;</span><br><span class="line">            ll j = <span class="built_in">dis</span>(e);</span><br><span class="line">            <span class="keyword">while</span>(s1[i+p[j]] || s2[i+n-p[j]]) j = <span class="built_in">dis</span>(e);</span><br><span class="line">            <span class="built_in">swap</span>(p[i], p[j]);</span><br><span class="line">            s1[i+p[i]]++, s2[i+n-p[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">shuffle</span>(p.<span class="built_in">begin</span>() + m, p.<span class="built_in">end</span>(), e);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = m; i &lt; n; ++i) &#123;</span><br><span class="line">            s1[i+p[i]]++, s2[i+n-p[i]]++;</span><br><span class="line">            conflict_rows.<span class="built_in">push_back</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">Conflicts</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(ll i = <span class="number">0</span>; i &lt; <span class="number">2</span> * n; i++) &#123;</span><br><span class="line">            ans += (s1[i] * (s1[i] - <span class="number">1</span>)) / <span class="number">2</span>;</span><br><span class="line">            ans += (s2[i] * (s2[i] - <span class="number">1</span>)) / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">update_conflict_rows</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; tmp;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> i : conflict_rows) <span class="keyword">if</span>(s1[i+p[i]] &gt; <span class="number">1</span> || s2[i+n-p[i]] &gt; <span class="number">1</span>) tmp.<span class="built_in">push_back</span>(i);</span><br><span class="line">        <span class="built_in">swap</span>(tmp, conflict_rows);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> ll <span class="title">delta</span><span class="params">(ll i, ll j)</span> </span>&#123;</span><br><span class="line">        ll x = p[i], y = p[j];</span><br><span class="line">        ll delta = <span class="number">0</span>;</span><br><span class="line">        delta += <span class="number">1</span> - s1[i+x];</span><br><span class="line">        delta += <span class="number">1</span> - s2[i+n-x];</span><br><span class="line">        delta += <span class="number">1</span> - s1[j+y];</span><br><span class="line">        delta += <span class="number">1</span> - s2[j+n-y];</span><br><span class="line">        </span><br><span class="line">        delta += s1[j+x];</span><br><span class="line">        delta += s2[j+n-x];</span><br><span class="line">        delta += s1[i+y];</span><br><span class="line">        delta += s2[i+n-y];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(i + x == j + y || i - x == j - y) delta -= <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> delta;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">Chk</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Conflicts</span>() == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">Chk2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(ll i = <span class="number">0</span>; i &lt; <span class="number">2</span> * n; i++) s1[i] = s2[i] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            s1[i+p[i]]++;</span><br><span class="line">            s2[i+n-p[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span>(s1[i+p[i]] &gt; <span class="number">1</span> || s2[i+n-p[i]] &gt; <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="function">std::ofstream <span class="title">fout</span><span class="params">(<span class="string">&quot;map.out&quot;</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            std::string s;</span><br><span class="line">            <span class="type">int</span> x = p[i];</span><br><span class="line">            <span class="keyword">if</span>(x &lt; <span class="number">0</span>) &#123; s += <span class="string">&#x27;-&#x27;</span>; x = -x; &#125;</span><br><span class="line">            std::string num;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                num += <span class="built_in">char</span>(x % <span class="number">10</span> + <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">                x /= <span class="number">10</span>;</span><br><span class="line">            &#125; <span class="keyword">while</span>(x);</span><br><span class="line">            std::<span class="built_in">reverse</span>(num.<span class="built_in">begin</span>(), num.<span class="built_in">end</span>());</span><br><span class="line">            s += num;</span><br><span class="line">            fout &lt;&lt; s &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        fout &lt;&lt; std::endl;</span><br><span class="line">        fout.<span class="built_in">close</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">State s;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Search</span><span class="params">(ll round, <span class="type">time_t</span> t0)</span> </span>&#123;</span><br><span class="line">    s.<span class="built_in">Rand</span>();</span><br><span class="line">    <span class="function">default_random_engine <span class="title">e</span><span class="params">(time(<span class="literal">NULL</span>))</span></span>;</span><br><span class="line">    uniform_int_distribution &lt;<span class="type">int</span>&gt; <span class="built_in">dis</span>(<span class="number">0</span>, n - <span class="number">1</span>); </span><br><span class="line">    ll Ans = s.<span class="built_in">Conflicts</span>(), Upper = <span class="number">1e6</span>;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Initial Conflicts: &quot;</span> &lt;&lt; Ans &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">while</span>(Ans &amp;&amp; Upper--) &#123;</span><br><span class="line">        ll times = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        ll i = s.conflict_rows[<span class="built_in">rand</span>() % s.conflict_rows.<span class="built_in">size</span>()];</span><br><span class="line">        <span class="keyword">while</span>(s1[i+s.p[i]] &lt;= <span class="number">1</span> &amp;&amp; s2[i+n-s.p[i]] &lt;= <span class="number">1</span> &amp;&amp; times &lt; <span class="number">5</span>) &#123;</span><br><span class="line">            i = s.conflict_rows[<span class="built_in">rand</span>() % s.conflict_rows.<span class="built_in">size</span>()];</span><br><span class="line">            times++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(times == <span class="number">5</span>) &#123;</span><br><span class="line">            s.<span class="built_in">update_conflict_rows</span>();</span><br><span class="line">            i = s.conflict_rows[<span class="built_in">rand</span>() % s.conflict_rows.<span class="built_in">size</span>()];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ll j = <span class="built_in">dis</span>(e), delta = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i == j || (delta = s.<span class="built_in">delta</span>(i, j)) &gt;= <span class="number">0</span>) j = <span class="built_in">dis</span>(e);</span><br><span class="line">        ll x = i, y = j;</span><br><span class="line">        s1[x+s.p[x]]--, s2[x+n-s.p[x]]--;</span><br><span class="line">        s1[y+s.p[y]]--, s2[y+n-s.p[y]]--;</span><br><span class="line">        <span class="built_in">swap</span>(s.p[x], s.p[y]);</span><br><span class="line">        s1[x+s.p[x]]++, s2[x+n-s.p[x]]++;</span><br><span class="line">        s1[y+s.p[y]]++, s2[y+n-s.p[y]]++;</span><br><span class="line">        Ans += delta;</span><br><span class="line">        <span class="keyword">if</span>((s1[x+s.p[x]] &gt; <span class="number">1</span> || s2[x+n-s.p[x]] &gt; <span class="number">1</span>) &amp;&amp; (s1[x+s.p[y]] &lt;= <span class="number">1</span> &amp;&amp; s2[x+n-s.p[y]] &lt;= <span class="number">1</span>)) s.conflict_rows.<span class="built_in">push_back</span>(x);</span><br><span class="line">        <span class="keyword">if</span>((s1[y+s.p[y]] &gt; <span class="number">1</span> || s2[y+n-s.p[y]] &gt; <span class="number">1</span>) &amp;&amp; (s1[y+s.p[x]] &lt;= <span class="number">1</span> &amp;&amp; s2[y+n-s.p[x]] &lt;= <span class="number">1</span>)) s.conflict_rows.<span class="built_in">push_back</span>(y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(s.<span class="built_in">Chk2</span>()) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Round &quot;</span> &lt;&lt; round &lt;&lt; <span class="string">&quot; success!&quot;</span> &lt;&lt; endl;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Conflicts: &quot;</span> &lt;&lt; s.<span class="built_in">Conflicts</span>() &lt;&lt; endl;</span><br><span class="line">        s.<span class="built_in">Show</span>();</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Time used: &quot;</span> &lt;&lt; (<span class="built_in">time</span>(<span class="literal">nullptr</span>) - t0) &lt;&lt; <span class="string">&quot; s&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Round &quot;</span> &lt;&lt; round &lt;&lt; <span class="string">&quot; failed!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Conflicts: &quot;</span> &lt;&lt; s.<span class="built_in">Conflicts</span>() &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Time used: &quot;</span> &lt;&lt; (<span class="built_in">time</span>(<span class="literal">nullptr</span>) - t0) &lt;&lt; <span class="string">&quot; s&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="function">default_random_engine <span class="title">e</span><span class="params">(rand())</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> max_iter = <span class="number">10</span>;</span><br><span class="line">    <span class="type">time_t</span> t0 = <span class="built_in">time</span>(<span class="literal">nullptr</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(ll t = <span class="number">1</span>; t &lt;= max_iter; ++t) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Round &quot;</span> &lt;&lt; t &lt;&lt; endl;</span><br><span class="line">        <span class="built_in">Search</span>(t, t0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/search/" rel="tag"># search</a>
+              <a href="/tags/random/" rel="tag"># random</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/04/28/poker/" rel="prev" title="poker1">
+                  <i class="fa fa-angle-left"></i> poker1
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Para</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">5k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">5 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
