@@ -6,7 +6,7 @@
   <link href="http://parademo.github.io/atom.xml" rel="self"/>
   
   <link href="http://parademo.github.io/"/>
-  <updated>2025-05-19T15:51:18.344Z</updated>
+  <updated>2025-10-25T07:44:59.192Z</updated>
   <id>http://parademo.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Geekgame2025</title>
+    <link href="http://parademo.github.io/2025/10/25/Geekgame2025/"/>
+    <id>http://parademo.github.io/2025/10/25/Geekgame2025/</id>
+    <published>2025-10-25T04:45:08.493Z</published>
+    <updated>2025-10-25T07:44:59.192Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;很好的 geekgame，让我咕咕一周的作业。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="ctf" scheme="http://parademo.github.io/categories/ctf/"/>
+    
+    
+    <category term="crypto" scheme="http://parademo.github.io/tags/crypto/"/>
+    
+    <category term="llm" scheme="http://parademo.github.io/tags/llm/"/>
+    
+  </entry>
   
   <entry>
     <title>百万级别 $n$ 皇后</title>
